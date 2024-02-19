@@ -70,7 +70,7 @@ In order for this script to be able to listen in to incoming web requests (like 
 4. You will now need to grant the webapp access as well. Again, confirm this access if you're ok with that. (Or don't! You can stop at any time! 🤪)
 5.  Once it is deployed, you will get a confirmation screen that tells you the webapp ID and URL. We will need this for our Siri Shortcut. Copy the URL and hold on to it.
 
-	![Post Deployment Screenshot](./docs/Screenshot - Post deplyoment info.png)
+	![Post Deployment Screenshot](https://github.com/josemonkey/freezer-inventory-example/blob/24e2403cbfbceab4d89d4e99174e8daa51fa9033/docs/Screenshot%20-%20Post%20deplyoment%20info.png)
 
 
 ### Set up your Siri Shortcut
