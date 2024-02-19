@@ -33,7 +33,7 @@ Later, to remove an item, you run the shortcut again and select the "remove" opt
 ### Set up the Google App Script Webapp
 	
 1. Go to the [Google App Script](https://script.google.com) site and click "Create New Project" and name it something appropriate like "Freezer Inventory Webapp."
-2. The interface will show you a Code.gs file that contains placeholder code. Replace everything in that file with the code from the Code.gs file in this project.
+2. The interface will show you a Code.gs file that contains placeholder code. Replace everything in that file with the code from (the Code.gs file in this project)[https://github.com/josemonkey/freezer-inventory-example/blob/main/Code.gs].
 3. Find the function called getDataSheet_() near the bottom of the file and replace "THIS-IS-THE-ID" with the spreadsheet ID from the previous step.
 
 	```
