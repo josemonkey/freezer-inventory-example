@@ -95,6 +95,10 @@ You can also remove the item you just added by running the shortcut again and se
 
 Obviously, this example can be adapted to similar applications easily by changing the spreadsheet structure, app script code, and Siri Shortcut. Have fun with it!
 
+### Using an NFC tag to launch the shortcut
+
+If you saw my video about this, you know that I used an NFC tag to launch the shortcut. That's totally not required, but can be done by simply setting up an auotmation in Siri Shortcuts to [https://letmegooglethat.com/?q=run+siri+shortcut+when+nfc+detected](run your shortcut when a specific NFC tag is detected). 
+
 ### Note about hardening
 
 As you may have noticed, this is not the most secure approach in the world. Anyone who learns the URL to your webapp could affect the data in your spreadsheet. 
