@@ -48,7 +48,7 @@ Later, to remove an item, you run the shortcut again and select the "remove" opt
 
 1. Use the App Script interface to execute the doPost() function. It will generate errors since it's not being invoked correctly (by passing parameters in a web request), but this step should be done simply to get it to ask you whether or not you wish to grant the app script access to the spreadsheet. 
 
-	![Auth Required Screenshot](./docs/Screenshot - app script permissions.png)
+	![Auth Required Screenshot](https://github.com/josemonkey/freezer-inventory-example/blob/b04122c464d7c4758214e93999ee569eb51c78e2/docs/Screenshot%20-%20app%20script%20permissions.png)
 	
 	Read everything carefully, and agree to everything to grant access. (Or, if you're not comfortable, don't and stop here!)
 	
@@ -64,10 +64,13 @@ In order for this script to be able to listen in to incoming web requests (like 
 
 	**NOTE: This means anyone can execute this webapp if they know the URL. Do not do this if you're not ok with that.**  
 	
-	![Deployment Screenshot](./docs/Screenshot - new deployment.png)
+	![Deployment Screenshot](https://github.com/josemonkey/freezer-inventory-example/blob/b04122c464d7c4758214e93999ee569eb51c78e2/docs/Screenshot%20-%20new%20deployment.png)
 
 	
 4. You will now need to grant the webapp access as well. Again, confirm this access if you're ok with that. (Or don't! You can stop at any time! 🤪)
+
+    ![Deployment Permissions Screenshot](https://github.com/josemonkey/freezer-inventory-example/blob/b04122c464d7c4758214e93999ee569eb51c78e2/docs/Screenshot%20-%20give%20access.png)
+
 5.  Once it is deployed, you will get a confirmation screen that tells you the webapp ID and URL. We will need this for our Siri Shortcut. Copy the URL and hold on to it.
 
 	![Post Deployment Screenshot](https://github.com/josemonkey/freezer-inventory-example/blob/24e2403cbfbceab4d89d4e99174e8daa51fa9033/docs/Screenshot%20-%20Post%20deplyoment%20info.png)
@@ -78,7 +81,7 @@ I haven't shared the shortcut to iCloud, so you're going to need to configure th
 
 Here is a screen shot. (It's from the MacOS interface, but you can do it on your phone - it's essentially the same.)
 
-![Siri Shortcut Screenshot](./docs/Screenshot - Siri Shortcut.png)
+![Siri Shortcut Screenshot](https://github.com/josemonkey/freezer-inventory-example/blob/b04122c464d7c4758214e93999ee569eb51c78e2/docs/Screenshot%20-%20Siri%20Shortcut.png)
 
 **NOTE: You must change the text "YOUR\_WEBAPP\_ID" to the web app ID that you generated in the last step!**
 
