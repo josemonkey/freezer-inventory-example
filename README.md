@@ -97,7 +97,7 @@ Obviously, this example can be adapted to similar applications easily by changin
 
 ### Using an NFC tag to launch the shortcut
 
-If you saw my video about this, you know that I used an NFC tag to launch the shortcut. That's totally not required, but can be done by simply setting up an auotmation in Siri Shortcuts to [run your shortcut when a specific NFC tag is detected](https://letmegooglethat.com/?q=run+siri+shortcut+when+nfc+detected).
+If you saw my video about this, you know that I used an NFC tag to launch the shortcut. That's totally not required, but can be done by simply setting up an auotmation in Siri Shortcuts to [run your shortcut when a specific NFC tag is detected](https://letmegooglethat.com/?q=run+siri+shortcut+when+nfc+detected)
 
 ### Note about hardening
 
