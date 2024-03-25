@@ -106,7 +106,7 @@ To get this to work, you need to configure an app script "trigger" to run on a s
 ### Set your Variables
 Edit the Code.gs file to set the following variables:
 
-- DIGEST\_RECIPIENT\_EMAIL - the email address of the recipient or a comma-separated list of email addresses to be the recipients
+- Return value of getDigestEmailRecipient\_() - the email address of the recipient or a comma-separated list of email addresses to be the recipients is returned by the function getDigestEmailRecipient\_(). I put this value here because it's a private function that shouldn't be visibile to clients under any circumstance.  
 - DIGEST\_MAX\_AGE - How many days old something should be before you are notified about it
 
 ### Configure the email template
