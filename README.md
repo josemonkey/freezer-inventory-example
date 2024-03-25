@@ -81,7 +81,7 @@ I haven't shared the shortcut to iCloud, so you're going to need to configure th
 
 Here is a screen shot. (It's from the MacOS interface, but you can do it on your phone - it's essentially the same.)
 
-![Siri Shortcut Screenshot](https://github.com/josemonkey/freezer-inventory-example/blob/b04122c464d7c4758214e93999ee569eb51c78e2/docs/Screenshot%20-%20Siri%20Shortcut.png)
+![Siri Shortcut Screenshot](https://raw.githubusercontent.com/josemonkey/freezer-inventory-example/main/docs/Screenshot%20-%20Siri%20Shortcut.png)
 
 **NOTE: You must change the text "YOUR\_WEBAPP\_ID" to the web app ID that you generated in the last step!**
 
