@@ -4,7 +4,6 @@ const GET_ACTION = "GET";
 
 const MIN_ITEM_ID = 101;
 
-const DIGEST_RECIPIENT_EMAIL = "somebody@somewhere.com";
 const DIGEST_MAX_AGE = 90;
 
 const ResponseTypes = {
@@ -232,8 +231,10 @@ function sendOldItemDigest() {
     template.oldItems = oldItems.sort((a, b) => b.age - a.age );
     let content = template.evaluate().getContent();
 
+    let recipient = getDigestEmailRecipient_();
+
     MailApp.sendEmail({
-      to: DIGEST_RECIPIENT_EMAIL,
+      to: recipient,
       subject: "Freezer Inventory Notification",
       htmlBody: content
     });
@@ -281,6 +282,12 @@ function getRequestData_(e, paramName) {
   }
 
   return value;
+}
+
+function getDigestEmailRecipient_()
+{
+  return "somebody@somewhere.com";
+
 }
 
 function getDataSheet_() {
