@@ -10,7 +10,7 @@ This project allows you to use a Siri Shortcut to add / remove items from a spre
 
 This ID should be recorded - I suggest by writing on the item with a marker. 
 
-Later, to remove an item, you run the shortcut again and select the "remove" option and enter the ID of the item to remove. That's all!
+Later, to remove an item, you run the shortcut again and select the "remove" option and enter the ID of the item to remove. The shortcut will then try to find the item and ask you to confirm it's the right one before removing it. That's all!
 
 ## Setup
 

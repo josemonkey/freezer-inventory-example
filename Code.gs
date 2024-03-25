@@ -1,6 +1,13 @@
-const ADD_ACTION = "add";
-const REMOVE_ACTION = "remove";
+const ADD_ACTION = "ADD";
+const REMOVE_ACTION = "REMOVE";
+const GET_ACTION = "GET";
+
 const MIN_ITEM_ID = 101;
+
+const ResponseTypes = {
+  OK: "OK",
+  ERROR: "ERROR"
+}
 
 function doPost(e) {
   
@@ -8,7 +15,7 @@ function doPost(e) {
 
   if(!requestIsValid_(e)) {
     console.error("Invalid request received");
-    throw "Invalid request";
+    return createErrorResponse("Invalid request");
   }
 
   // get the action
@@ -23,7 +30,7 @@ function doPost(e) {
     let weight = getRequestData_(e, "weight");
 
     if(!desc) {
-      throw "Invalid data";
+      return createErrorResponse("Invalid data");
     }
 
     if(!weight) {
@@ -36,29 +43,65 @@ function doPost(e) {
     if(newID) {
       responseMsg = "Item " + newID + " added";
     } else {
-      throw "Error: ITEM NOT ADDED";
+      return createErrorResponse("Error: ITEM NOT ADDED");
     }
 
-  } else if(action === REMOVE_ACTION) {
+  } else if(action === REMOVE_ACTION || action === GET_ACTION) {
 
-    let removeID = getRequestData_(e, "id");
+    let itemID = getRequestData_(e, "id");
 
-    if(!removeID) {
-      throw "Invalid data";
+    if(!itemID) {
+      return createErrorResponse("Invalid data");
     }
 
-    if(deleteItem(removeID)) {
-      responseMsg = "Item " + removeID + " removed";
+    if(action === REMOVE_ACTION) {
+      if(deleteItem(itemID)) {
+        responseMsg = "Item " + itemID + " removed";
+      } else {
+        return createErrorResponse("Error: ITEM " + itemID + " NOT FOUND");
+      }
     } else {
-      throw "Error: ITEM " + removeID + " NOT FOUND";
+      // GET
+      let getResult = getItem(itemID);
+      if(getResult) {
+        responseMsg = "Remove item " + getResult.id + ", " + getResult.desc;
+        if(getResult.weight) {
+          responseMsg += " (" + getResult.weight + ")";
+        }
+        responseMsg += "?";
+      } else {
+        return createErrorResponse("Error: ITEM " + itemID + " NOT FOUND");
+      }    
     }
 
   } else {
-    throw "Invalid action";
+    return createErrorResponse("Invalid action");
   }
 
   console.log(responseMsg);
-  return ContentService.createTextOutput(responseMsg);
+  return createResponse(responseMsg);
+}
+
+function createGenericResponse(responseType, responseMsg, responseData)
+{
+    let content = {
+      type: responseType,
+      message: responseMsg,
+      data: responseData || ""
+  }
+  return ContentService.createTextOutput(JSON.stringify(content) ).setMimeType(ContentService.MimeType.JSON); 
+
+}
+
+function createResponse(responseMsg, responseData)
+{
+  return createGenericResponse(ResponseTypes.OK, responseMsg, responseData);
+
+}
+
+function createErrorResponse(errorMsg)
+{
+  return createGenericResponse(ResponseTypes.ERROR, errorMsg, null);
 }
 
 function addItem(itemDesc, weight) {
@@ -112,6 +155,30 @@ function deleteItem(itemID) {
   }
 
   return deleted;
+}
+
+function getItem(itemID) {
+  let inventorySheet = getDataSheet_();
+
+  let lastRow = inventorySheet.getLastRow();
+
+  // look for a row with a matching ID
+  
+  let matched = -1;
+
+  let range = inventorySheet.getRange(1, 1, lastRow, 5);
+  let values = range.getValues();
+
+  for(var row in values) {
+    if(values[row][0] == itemID) {
+      // Found it
+      return { id: itemID, desc: values[row][1], weight: values[row][2] };
+    }
+  }
+
+  // didn't find it
+  return null;
+
 }
 
 // deprecated: returns the max item ID in use
