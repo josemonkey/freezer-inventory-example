@@ -1,5 +1,10 @@
 # Changelog 
 
+## [v0.1.2-alpha] - 2024-03-25
+
+### Added
+- Added email digest functionality
+
 ## [v0.1.1-alpha] - 2024-03-25
 
 ### Added

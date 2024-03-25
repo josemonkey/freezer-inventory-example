@@ -12,6 +12,8 @@ This ID should be recorded - I suggest by writing on the item with a marker.
 
 Later, to remove an item, you run the shortcut again and select the "remove" option and enter the ID of the item to remove. The shortcut will then try to find the item and ask you to confirm it's the right one before removing it. That's all!
 
+Plus, I've added the option to set up a regular email digest that will let you know when you have items in your freezer that are getting old.
+
 ## Setup
 
 ### Create the Spreadsheet
@@ -90,6 +92,35 @@ Here is a screen shot. (It's from the MacOS interface, but you can do it on your
 That's it! Try running the shortcut to add something to the inventory. You should get a confirmation message with the new item ID. You can then verify that you see it in the spreadsheet.
 
 You can also remove the item you just added by running the shortcut again and selecting the "remove" option. When you do, enter the ID it gave you when you added the item.
+
+## Email Digest Setup (optional)
+
+Recently, user @RichardTheuws suggested that I add functionality to send automatic emails about items that are older than a certain date. (Great idea!) They went ahead and implemented a version of this on their own, and I appreciate the suggestion and the reference code they shared. 
+
+I have implemented something inspired by that. I have now implemented a function that will send an email digest on a schedule that looks like this:
+
+![Email Example](https://raw.githubusercontent.com/josemonkey/freezer-inventory-example/main/docs/Email%20Example.png)
+
+To get this to work, you need to configure an app script "trigger" to run on a schedule of your choosing. You also need to configure a few variables in the code to tell it who to email and how old you consider old enough to warrant a reminder. 
+
+### Set your Variables
+Edit the Code.gs file to set the following variables:
+
+- DIGEST\_RECIPIENT\_EMAIL - the email address of the recipient or a comma-separated list of email addresses to be the recipients
+- DIGEST\_MAX\_AGE - How many days old something should be before you are notified about it
+
+### Configure the email template
+Copy and paste the code from [the emailTemplate.html file from this project](https://github.com/josemonkey/freezer-inventory-example/blob/main/emailTemplate.html) into a file of the same name in your app script project. (It should live next to Code.gs.) Tweak the content of this file as desired.
+
+### Test the digest function
+Try using the "Run" method to execute the sendOldItemDigest() to make sure it does what you want it to do. If it doesn't send you an email... idk, try debugging your setup. Make sure you actually have items old enough to trigger an email, or no email will be sent!
+
+### Set up the Trigger
+In your app script project, create a trigger to run the function sendOldItemDigest() and configure it for whatever schedule you want to use. I chose a weekly schedule.
+
+![Trigger Configuration Screenshot](https://raw.githubusercontent.com/josemonkey/freezer-inventory-example/main/docs/Screenshot%20-%20Trigger%20Configuration.png)
+
+Once you do that, you should get emailed when you have items that are older than your configured cutoff.
 
 ## Closing Thoughts
 

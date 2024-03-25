@@ -4,6 +4,9 @@ const GET_ACTION = "GET";
 
 const MIN_ITEM_ID = 101;
 
+const DIGEST_RECIPIENT_EMAIL = "somebody@somewhere.com";
+const DIGEST_MAX_AGE = 90;
+
 const ResponseTypes = {
   OK: "OK",
   ERROR: "ERROR"
@@ -64,11 +67,10 @@ function doPost(e) {
       // GET
       let getResult = getItem(itemID);
       if(getResult) {
-        responseMsg = "Remove item " + getResult.id + ", " + getResult.desc;
+        responseMsg = "Item " + getResult.id + ", " + getResult.desc;
         if(getResult.weight) {
           responseMsg += " (" + getResult.weight + ")";
         }
-        responseMsg += "?";
       } else {
         return createErrorResponse("Error: ITEM " + itemID + " NOT FOUND");
       }    
@@ -219,6 +221,52 @@ function getFirstAvailableID() {
 
   console.log("First available id is " + newID);
   return newID;
+}
+
+function sendOldItemDigest() {
+
+  let oldItems = checkForOldItems_(DIGEST_MAX_AGE);
+  if(oldItems && oldItems.length > 0) 
+  {
+    var template = HtmlService.createTemplateFromFile('emailTemplate');
+    template.oldItems = oldItems.sort((a, b) => b.age - a.age );
+    let content = template.evaluate().getContent();
+
+    MailApp.sendEmail({
+      to: DIGEST_RECIPIENT_EMAIL,
+      subject: "Freezer Inventory Notification",
+      htmlBody: content
+    });
+  }
+
+
+}
+
+function checkForOldItems_(age) {
+
+  let inventorySheet = getDataSheet_();
+
+  let lastRow = inventorySheet.getLastRow();
+
+
+  // look for items older than the given age
+
+  let range = inventorySheet.getRange(1, 1, lastRow, 5);
+  let values = range.getValues();
+
+  let oldItems = [];
+  for(var row in values) {
+
+    let thisItem = { id: values[row][0], desc: values[row][1], weight: values[row][2], added: values[row][3], age: values[row][4]}
+
+    if(thisItem.age > age) {
+      oldItems.push(thisItem);
+    }
+  }
+
+  console.log(oldItems);
+
+  return oldItems;
 }
 
 function getRequestData_(e, paramName) {

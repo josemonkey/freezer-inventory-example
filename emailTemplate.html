@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <style>
+        body {
+            margin: 24px;
+            font-family: Montserrat, Geneva, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse;
+            min-width: 75%;
+        }
+
+        table td {
+            padding: 15px;
+        }
+
+        table thead td {
+            background-color: #54585d;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 13px;
+            border: 1px solid #54585d;
+        }
+
+        table tbody td {
+            color: #636363;
+            border: 1px solid #dddfe1;
+        }
+
+        table tbody tr {
+            background-color: #f9fafb;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>There are some items in your freezer that are getting old!</h1>
+    <p>These items in your freezer inventory appear to have been there for a while. Consider using them soon.</p>
+    <p>If you have already used these items, you should remove them from the inventory.</p>
+    <p>If you want to stop or adjust the frequency of these messages, go reconfigure the trigger you created to send
+        them. 😜</p>
+
+    <table>
+        <thead>
+            <td>ID</td>
+            <td>Description</td>
+            <td>Weight</td>
+            <td>Date Added</td>
+            <td>Age</td>
+        </thead>
+        <tbody>
+            <? for (const item of oldItems) { ?>
+            <tr>
+                <td>
+                    <?= item.id ?>
+                </td>
+                <td>
+                    <?= item.desc ?>
+                </td>
+                <td>
+                    <?= item.weight ?>
+                </td>
+                <td>
+                    <?= Utilities.formatDate(item.added, "GMT-5", "M/d/yyyy") ?>
+                </td>
+                <td>
+                    <?= item.age ?>
+                </td>
+            </tr>
+            <? } ?>
+        </tbody>
+    </table>
+
+</body>
+
+</html>
